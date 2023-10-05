@@ -1,0 +1,41 @@
+﻿@page
+@model PetsApp2.Pages.Cats.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h1>My Pets</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-outline-dark">Create New</a>
+</p>
+
+@foreach (var item in Model.Cat)
+{
+    string imagePath = "~/photos/" + item.FileName;
+
+    <div class="row">
+        <div class="col-md-4">
+            <img src="@Url.Content(imagePath)" class="img-fluid">
+        </div>
+
+        <div class="col-md-8">
+            <p>Name: @item.PetName</p>
+
+            <p>Breed: @item.Breed</p>
+
+            <p>Weight: @item.Weight</p>S
+
+            <p>Favourite Toy: @item.FaveToy</p>
+
+            <p>
+                <a asp-page="./Edit" asp-route-id="@item.CatId" class="btn btn-outline-dark">Edit</a>&nbsp;&nbsp;
+                <a asp-page="./Delete" asp-route-id="@item.CatId" class="btn btn-outline-dark">Delete</a>
+            </p>
+        </div>
+
+    </div>
+    <br />
+}
